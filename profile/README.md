@@ -10,7 +10,7 @@ Corvid Labs is an indie development collective passionate about creating innovat
 The **Nevermore NFT** is our revolutionary lifetime membership token that provides holders with premium access to the entire Corvid Labs ecosystem. It represents our commitment to a community-first approach, replacing traditional subscriptions with a single, permanent key to all our current and future applications.
 
 - **Explore the Project:** [**Whitepaper**](https://corvid.algo.xyz)
-- **Join the Conversation:** [**Official Corvid Labs Discord**](https://discord.gg/6xMfGZgnf9)
+- **Join the Conversation:** [**Official Corvid Labs Discord**](https://discord.gg/mQGPQy5fnd)
 
 ## 🔭 Our Focus
 
@@ -22,5 +22,5 @@ The **Nevermore NFT** is our revolutionary lifetime membership token that provid
 
 We're always open to collaboration, feedback, and conversation.
 
-- **Discord:** The best way to connect with us is on our [**community server**](https://discord.gg/6xMfGZgnf9).
+- **Discord:** The best way to connect with us is on our [**community server**](https://discord.gg/mQGPQy5fnd).
 - **Email:** For direct inquiries, you can reach us at via [email](mailto:corvid-labs.envoy197@passmail.net).
