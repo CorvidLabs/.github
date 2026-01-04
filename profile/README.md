@@ -1,26 +1,36 @@
+# Corvid Labs
 
-# Welcome to Corvid Labs
+**Building the future of development, together.**
 
-**Building the future of mobile productivity, together.**
+We're an indie collective passionate about creating innovative applications, blockchain tools, and open-source frameworks. We believe in building high-quality, user-centric software and fostering a community that drives development forward.
 
-Corvid Labs is an indie development collective passionate about creating innovative iOS applications and powerful open-source Swift frameworks. We believe in building high-quality, user-centric tools and fostering a community that drives development forward.
+## What We're Building
 
-## 🚀 Our Flagship Project: The Nevermore NFT Collection
+### Algorand Blockchain
+We're all-in on Algorand. Our Swift SDK is the most complete toolchain for building on Algorand from Apple platforms — from core transactions to NFT minting.
 
-The **Nevermore NFT** is our revolutionary lifetime membership token that provides holders with premium access to the entire Corvid Labs ecosystem. It represents our commitment to a community-first approach, replacing traditional subscriptions with a single, permanent key to all our current and future applications.
+→ [`swift-algorand`](https://github.com/CorvidLabs/swift-algorand) · [`swift-algokit`](https://github.com/CorvidLabs/swift-algokit) · [`swift-mint`](https://github.com/CorvidLabs/swift-mint) · [`swift-arc`](https://github.com/CorvidLabs/swift-arc)
 
-- **Explore the Project:** [**Whitepaper**](https://corvid.algo.xyz)
-- **Join the Conversation:** [**Official Corvid Labs Discord**](https://discord.gg/mQGPQy5fnd)
+### Open Source Libraries
+Focused, well-crafted packages that solve real problems:
 
-## 🔭 Our Focus
+→ [`swift-retry`](https://github.com/CorvidLabs/swift-retry) · [`swift-qr`](https://github.com/CorvidLabs/swift-qr) · [`swift-env`](https://github.com/CorvidLabs/swift-env) · [`swift-graph`](https://github.com/CorvidLabs/swift-graph) · [`swift-color`](https://github.com/CorvidLabs/swift-color) · [`swift-music`](https://github.com/CorvidLabs/swift-music) · [and more...](https://github.com/orgs/CorvidLabs/repositories)
 
-- **🍎 iOS Development:** Crafting beautiful, intuitive, and powerful applications for the Apple ecosystem.
-- **🔓 Open Source:** Contributing robust and reusable frameworks back to the Swift developer community.
-- **🤝 Community-Driven:** Empowering our users to have a real voice in our development roadmap and priorities.
+### Education
+[`cs`](https://github.com/CorvidLabs/cs) — Interactive CS courses in Python, JavaScript, Swift, Rust, and Algorithms
 
-## 📫 Get in Touch
+## Our Focus
 
-We're always open to collaboration, feedback, and conversation.
+- **Open Source** — Contributing robust, reusable tools back to the developer community
+- **Community-Driven** — Empowering our users to have a real voice in our roadmap
+- **Blockchain Native** — Building for the decentralized future on Algorand
 
-- **Discord:** The best way to connect with us is on our [**community server**](https://discord.gg/mQGPQy5fnd).
-- **Email:** For direct inquiries, you can reach us at via [email](mailto:corvid-labs.envoy197@passmail.net).
+## Nevermore NFT
+
+Our lifetime membership token provides holders with permanent access to the entire Corvid Labs ecosystem — replacing subscriptions with a single key to all our apps, forever.
+
+[Learn more](https://corvid.algo.xyz)
+
+## Join Us
+
+[Discord](https://discord.gg/mQGPQy5fnd) · [Email](mailto:corvid-labs.envoy197@passmail.net)
