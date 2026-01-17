@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CorvidLabs Ecosystem Analysis</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --green: #3fb950;
+            --yellow: #d29922;
+            --red: #f85149;
+            --purple: #a371f7;
+            --orange: #db6d28;
+            --pink: #db61a2;
+            --cyan: #39c5cf;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        header p { color: var(--text-secondary); font-size: 1.1rem; }
+        .date { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; }
+        h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
+        h2::before { content: ''; display: inline-block; width: 4px; height: 1.5rem; background: var(--accent); border-radius: 2px; }
+        h3 { font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: var(--text); }
+        .section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .stat-card { background: var(--bg-tertiary); border-radius: 8px; padding: 1rem; text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: bold; color: var(--accent); }
+        .stat-label { font-size: 0.8rem; color: var(--text-secondary); }
+        .tier-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+        .tier-1 { background: var(--green); color: #000; }
+        .tier-2 { background: var(--accent); color: #000; }
+        .tier-3 { background: var(--purple); color: #fff; }
+        .tier-4 { background: var(--orange); color: #fff; }
+        .tier-micro { background: var(--pink); color: #fff; }
+        .tier-exists { background: var(--text-secondary); color: #000; }
+        .idea-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
+        .idea-card { background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; transition: border-color 0.2s; }
+        .idea-card:hover { border-color: var(--accent); }
+        .idea-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; gap: 0.5rem; }
+        .idea-name { font-weight: 600; font-size: 1.1rem; color: var(--text); font-family: 'SF Mono', Monaco, monospace; }
+        .idea-desc { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.75rem; }
+        .idea-uses { font-size: 0.85rem; color: var(--text-secondary); padding: 0.5rem; background: var(--bg-secondary); border-radius: 4px; margin-bottom: 1rem; }
+        .idea-uses strong { color: var(--text); }
+        .prompt-container { margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+        .prompt-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.5rem; }
+        .prompt-box { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem; font-size: 0.8rem; color: var(--text-secondary); font-family: 'SF Mono', Monaco, monospace; line-height: 1.5; max-height: 150px; overflow-y: auto; white-space: pre-wrap; }
+        .prompt-wrapper { position: relative; }
+        .copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; background: var(--bg-tertiary); border: 1px solid var(--border); color: var(--text-secondary); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.7rem; cursor: pointer; }
+        .copy-btn:hover { background: var(--accent); color: #000; }
+        .copy-btn.copied { background: var(--green); color: #000; }
+        .dep-graph { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; font-family: 'SF Mono', Monaco, monospace; font-size: 0.85rem; overflow-x: auto; white-space: pre; line-height: 1.8; }
+        .dep-graph .layer { color: var(--accent); font-weight: bold; }
+        .dep-graph .pkg { color: var(--green); }
+        .dep-graph .arrow { color: var(--yellow); }
+        .dep-graph .dep { color: var(--purple); }
+        .notes { background: var(--bg-tertiary); border-left: 3px solid var(--yellow); padding: 1rem; margin-top: 1rem; border-radius: 0 8px 8px 0; }
+        .notes-title { font-weight: 600; color: var(--yellow); margin-bottom: 0.5rem; }
+        .notes ul { margin-left: 1.25rem; color: var(--text-secondary); font-size: 0.9rem; }
+        .existing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; }
+        .existing-card { background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem; }
+        .existing-name { font-weight: 600; color: var(--green); font-family: monospace; }
+        .existing-desc { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.25rem; }
+        .existing-link { font-size: 0.75rem; color: var(--accent); text-decoration: none; }
+        .nav { position: fixed; top: 1rem; right: 1rem; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem; z-index: 100; }
+        .nav a { display: block; padding: 0.4rem 0.8rem; color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; border-radius: 4px; }
+        .nav a:hover { background: var(--bg-tertiary); color: var(--accent); }
+        footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 0.85rem; }
+        footer a { color: var(--accent); text-decoration: none; }
+        @media (max-width: 900px) { body { padding: 1rem; } .nav { display: none; } .idea-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="#ecosystem">Ecosystem</a>
+        <a href="#0xleif">0xLeif Packages</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#micro">New Micro Ideas</a>
+        <a href="#apps">App Ideas</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>CorvidLabs Ecosystem Analysis</h1>
+            <p>Package overview, integrations, and new project ideas</p>
+            <div class="date">January 17, 2026</div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">24</div>
+                <div class="stat-label">CorvidLabs Packages</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">15+</div>
+                <div class="stat-label">0xLeif Packages</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">9+</div>
+                <div class="stat-label">Active Integrations</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">7.3</div>
+                <div class="stat-label">Health Score /10</div>
+            </div>
+        </div>
+
+        <!-- Ecosystem Map -->
+        <section id="ecosystem">
+            <h2>CorvidLabs Ecosystem</h2>
+            <div class="section">
+                <div class="dep-graph"><span class="layer">FOUNDATION LAYER (Zero Dependencies)</span>
+├── <span class="pkg">swift-env</span>        Environment variable loading
+├── <span class="pkg">swift-valid</span>      Composable validation
+├── <span class="pkg">swift-parse</span>      Text processing & formatting
+├── <span class="pkg">swift-units</span>      Type-safe unit conversion
+├── <span class="pkg">swift-stats</span>      Statistics & data analysis
+├── <span class="pkg">swift-graph</span>      Data structures (graphs, trees, tries)
+├── <span class="pkg">swift-color</span>      Color spaces & accessibility
+├── <span class="pkg">swift-retry</span>      Retry strategies & circuit breaker
+├── <span class="pkg">swift-music</span>      Music theory, scales, chords
+└── <span class="pkg">swift-cli</span>        Command-line utilities
+
+<span class="layer">INTEGRATED LAYER</span>
+├── <span class="pkg">swift-art</span>     <span class="arrow">→</span> <span class="dep">swift-color</span>  (generative art)
+├── <span class="pkg">swift-ascii</span>   <span class="arrow">→</span> <span class="dep">swift-color</span>  (ASCII to SVG)
+├── <span class="pkg">swift-qr</span>      <span class="arrow">→</span> <span class="dep">swift-ascii</span>  (QR code generation)
+├── <span class="pkg">swift-weather</span> <span class="arrow">→</span> <span class="dep">swift-retry</span>  (weather APIs)
+├── <span class="pkg">swift-pinata</span>                    (IPFS storage)
+└── <span class="pkg">swift-algorand</span>                 (core blockchain SDK)
+
+<span class="layer">BLOCKCHAIN LAYER (Algorand)</span>
+├── <span class="pkg">swift-algokit</span>  <span class="arrow">→</span> <span class="dep">swift-algorand</span>  (high-level wrapper)
+├── <span class="pkg">swift-mint</span>     <span class="arrow">→</span> <span class="dep">swift-algorand</span>  (NFT minting)
+├── <span class="pkg">swift-arc</span>      <span class="arrow">→</span> <span class="dep">swift-algorand</span>  (NFT metadata)
+├── <span class="pkg">swift-algotest</span> <span class="arrow">→</span> <span class="dep">swift-algorand</span>  (testing)
+└── <span class="pkg">swift-algochat</span> <span class="arrow">→</span> <span class="dep">swift-algorand</span>  (encrypted messaging)
+
+<span class="layer">GAME/APP LAYER</span>
+├── <span class="pkg">swift-game</span>                      (game utilities)
+├── <span class="pkg">swift-godot</span>                     (Godot extensions)
+└── <span class="pkg">swift-asa-viewer</span>                (ASA browser)</div>
+            </div>
+        </section>
+
+        <!-- 0xLeif Existing Packages -->
+        <section id="0xleif">
+            <h2>0xLeif Existing Packages (Don't Duplicate!)</h2>
+            <div class="section">
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">These packages already exist and should be used instead of creating new ones:</p>
+                <div class="existing-grid">
+                    <div class="existing-card">
+                        <div class="existing-name">Fork</div>
+                        <div class="existing-desc">Parallelize async functions</div>
+                        <a href="https://github.com/0xLeif/Fork" class="existing-link">github.com/0xLeif/Fork</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">AppState</div>
+                        <div class="existing-desc">State management + DI</div>
+                        <a href="https://github.com/0xLeif/AppState" class="existing-link">github.com/0xLeif/AppState</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">Cache</div>
+                        <div class="existing-desc">Simple caching library</div>
+                        <a href="https://github.com/0xLeif/Cache" class="existing-link">github.com/0xLeif/Cache</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">Later</div>
+                        <div class="existing-desc">Future, Deferred, Stream, Publisher</div>
+                        <a href="https://github.com/0xLeif/Later" class="existing-link">github.com/0xLeif/Later</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">Closure</div>
+                        <div class="existing-desc">Function chaining</div>
+                        <a href="https://github.com/0xLeif/Closure" class="existing-link">github.com/0xLeif/Closure</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">Waiter</div>
+                        <div class="existing-desc">Async waiting utilities</div>
+                        <a href="https://github.com/0xLeif/Waiter" class="existing-link">github.com/0xLeif/Waiter</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">Network</div>
+                        <div class="existing-desc">Lightweight HTTP client</div>
+                        <a href="https://github.com/0xLeif/Network" class="existing-link">github.com/0xLeif/Network</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">Scribe</div>
+                        <div class="existing-desc">Logging all events</div>
+                        <a href="https://github.com/0xLeif/Scribe" class="existing-link">github.com/0xLeif/Scribe</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">Plugin</div>
+                        <div class="existing-desc">Plug and play system</div>
+                        <a href="https://github.com/0xLeif/Plugin" class="existing-link">github.com/0xLeif/Plugin</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">DataStore</div>
+                        <div class="existing-desc">Data storage with caching</div>
+                        <a href="https://github.com/0xLeif/DataStore" class="existing-link">github.com/0xLeif/DataStore</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">Mocked</div>
+                        <div class="existing-desc">Mock generation for protocols</div>
+                        <a href="https://github.com/0xLeif/Mocked" class="existing-link">github.com/0xLeif/Mocked</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">Navigation</div>
+                        <div class="existing-desc">SwiftUI navigation</div>
+                        <a href="https://github.com/0xLeif/Navigation" class="existing-link">github.com/0xLeif/Navigation</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">FLite</div>
+                        <div class="existing-desc">SQLite ORM</div>
+                        <a href="https://github.com/0xLeif/FLite" class="existing-link">github.com/0xLeif/FLite</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">cron</div>
+                        <div class="existing-desc">Swift cron scheduling</div>
+                        <a href="https://github.com/0xLeif/cron" class="existing-link">github.com/0xLeif/cron</a>
+                    </div>
+                    <div class="existing-card">
+                        <div class="existing-name">AppDependency</div>
+                        <div class="existing-desc">DI only (mirror of AppState)</div>
+                        <a href="https://github.com/0xLeif/AppDependency" class="existing-link">github.com/0xLeif/AppDependency</a>
+                    </div>
+                </div>
+
+                <div class="notes">
+                    <div class="notes-title">Use These Instead Of Creating:</div>
+                    <ul>
+                        <li><strong>Fork</strong> instead of "swift-fork" for parallel execution</li>
+                        <li><strong>AppState</strong> instead of "swift-box" or "swift-state" for state/DI</li>
+                        <li><strong>Cache</strong> instead of "swift-memo" for memoization</li>
+                        <li><strong>Closure</strong> instead of "swift-pipe" for function chaining</li>
+                        <li><strong>Waiter</strong> instead of "swift-gate" for async synchronization</li>
+                        <li><strong>Network</strong> instead of "swift-http" for HTTP requests</li>
+                        <li><strong>Scribe</strong> instead of "swift-log" for logging</li>
+                        <li><strong>Plugin</strong> instead of "swift-hook" for lifecycle hooks</li>
+                        <li><strong>Later</strong> instead of "swift-watch" for observation/streams</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integration Opportunities -->
+        <section id="integrations">
+            <h2>Integration Opportunities</h2>
+            <div class="section">
+                <div class="idea-grid">
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">swift-env + swift-valid</span>
+                            <span class="tier-badge tier-1">Integrate</span>
+                        </div>
+                        <div class="idea-desc">Validate environment variables on load with schema definitions.</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Enhance swift-env to integrate with swift-valid for environment variable validation.
+
+Add:
+1. Schema-based validation on Env.load()
+2. Type coercion with validation (PORT must be 1-65535)
+3. Required vs optional with defaults
+4. URL, email, path validators
+
+Example:
+```swift
+let env = try Env.load {
+    Env.required("DATABASE_URL", validator: .url)
+    Env.required("PORT", validator: .range(1...65535))
+    Env.optional("LOG_LEVEL", default: "info")
+}
+```
+
+Follow CorvidLabs conventions.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">swift-graph + swift-music</span>
+                            <span class="tier-badge tier-1">Integrate</span>
+                        </div>
+                        <div class="idea-desc">Use graph structures for chord progressions, voice leading, harmonic analysis.</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Integrate swift-graph into swift-music for music theory analysis.
+
+Add:
+1. Chord progression graph - nodes are chords, edges are transitions
+2. Voice leading optimization via shortest path
+3. Circle of fifths as graph structure
+4. Scale relationship mapping
+
+Example:
+```swift
+let harmonyGraph = HarmonyGraph(key: .cMajor)
+let progressions = harmonyGraph.paths(from: .I, to: .I, maxLength: 4)
+```
+
+swift-music should depend on swift-graph.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">swift-pinata + swift-art</span>
+                            <span class="tier-badge tier-1">Integrate</span>
+                        </div>
+                        <div class="idea-desc">Direct pipeline from generative art to IPFS. One-liner NFT asset creation.</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Create integration between swift-art and swift-pinata for NFT pipelines.
+
+Add Pinata extension:
+1. Accept ArtCanvas or rendered images
+2. Auto PNG/SVG rendering before upload
+3. Metadata from art params (seed, noise type, colors)
+4. Batch upload for collections
+
+Example:
+```swift
+let art = NoiseArt(type: .perlin, seed: 12345)
+let pinned = try await pinata.pin(art: canvas, metadata: [...])
+print(pinned.ipfsURL)
+```</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">swift-units + swift-weather</span>
+                            <span class="tier-badge tier-1">Integrate</span>
+                        </div>
+                        <div class="idea-desc">Type-safe weather measurements. No more Celsius/Fahrenheit confusion.</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Integrate swift-units into swift-weather for type-safe measurements.
+
+Add:
+1. Temperature as Temperature type (not Double)
+2. Wind speed as Speed type
+3. Precipitation as Length type
+4. Auto unit preference from locale
+
+Example:
+```swift
+let weather = try await client.current(location: coords)
+print(weather.temperature.celsius)
+print(weather.temperature.fahrenheit)
+print(weather.windSpeed.milesPerHour)
+```
+
+swift-weather should depend on swift-units.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW Micro Packages (Not duplicates) -->
+        <section id="micro">
+            <h2>New Micro Package Ideas</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Small, focused packages that DON'T duplicate 0xLeif's existing work:</p>
+
+            <div class="section">
+                <div class="idea-grid">
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">swift-once</span>
+                            <span class="tier-badge tier-micro">Micro</span>
+                        </div>
+                        <div class="idea-desc">Execute code exactly once. Thread-safe lazy init, one-time setup, feature flags that fire once.</div>
+                        <div class="idea-uses"><strong>Different from Later:</strong> Simpler API, focused only on one-time execution pattern</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Create swift-once - execute code exactly once, following CorvidLabs conventions.
+
+Core type: Once<Value: Sendable>
+- Actor-based for thread safety
+- Lazy evaluation - only runs when first accessed
+- Caches result for subsequent calls
+- Supports async and throwing
+
+Additional:
+- OnceFlag: Bool that can only become true once
+- @Once property wrapper
+
+Example:
+```swift
+let setup = Once { try await Database.connect() }
+let db = try await setup() // Connects first time
+let db2 = try await setup() // Returns cached
+
+let migrated = OnceFlag()
+if migrated.trigger() { migrate() } // Only once
+```
+
+~50 lines. Zero dependencies.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">swift-throttle</span>
+                            <span class="tier-badge tier-micro">Micro</span>
+                        </div>
+                        <div class="idea-desc">Rate limiting and debouncing. Control execution frequency for APIs, UI events.</div>
+                        <div class="idea-uses"><strong>Not in 0xLeif repos:</strong> Focused throttle/debounce/rate-limit patterns</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Create swift-throttle - rate limiting utilities, following CorvidLabs conventions.
+
+Core types:
+1. Throttle - Execute at most once per interval
+2. Debounce - Execute after quiet period
+3. RateLimiter - Token bucket algorithm
+
+Example:
+```swift
+let log = Throttle(interval: 1.0) { print($0) }
+log("a") // Prints
+log("b") // Dropped (within interval)
+
+let search = Debounce(delay: 0.3) { query in
+    await performSearch(query)
+}
+search("help") // Only executes after 300ms quiet
+
+let api = RateLimiter(rate: 10, per: .second)
+if await api.acquire() { makeAPICall() }
+```
+
+~150 lines. Zero dependencies. Sendable.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">swift-tap</span>
+                            <span class="tier-badge tier-micro">Micro</span>
+                        </div>
+                        <div class="idea-desc">Side-effect chaining. Inspect values without breaking fluent APIs. Debug logging made easy.</div>
+                        <div class="idea-uses"><strong>Different from Closure:</strong> One-liner side effects, not full function composition</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Create swift-tap - side-effect chaining, following CorvidLabs conventions.
+
+Extensions on common types:
+- tap(_:) - Execute side effect, return self
+- debug(_:) - Print with label, return self
+- measure(_:) - Time execution, return self
+
+Example:
+```swift
+let user = fetchUser()
+    .tap { print("Fetched: \($0.id)") }
+    .tap { analytics.track("user_fetched") }
+
+let result = complexCalculation()
+    .debug("result") // Prints: [DEBUG] result: 42
+
+let data = loadData()
+    .measure("loading") // Prints timing
+```
+
+~30 lines. Zero dependencies.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">swift-either</span>
+                            <span class="tier-badge tier-micro">Micro</span>
+                        </div>
+                        <div class="idea-desc">Either type for dual returns. When you need A or B, not Optional or Result.</div>
+                        <div class="idea-uses"><strong>Not in 0xLeif repos:</strong> Classic functional Either&lt;Left, Right&gt;</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Create swift-either - Either type, following CorvidLabs conventions.
+
+Core: Either<Left, Right>
+- .left(Left) or .right(Right)
+- Map/flatMap for both sides
+- Fold to extract value
+- Swap sides
+- Convert to/from Result
+
+Example:
+```swift
+func fetch() -> Either<CachedUser, FreshUser> {
+    cache.exists ? .left(cached) : .right(fresh)
+}
+
+let user: User = result.fold(
+    left: { $0.toUser() },
+    right: { $0.toUser() }
+)
+```
+
+~80 lines. Sendable, Equatable, Hashable.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">swift-with</span>
+                            <span class="tier-badge tier-micro">Micro</span>
+                        </div>
+                        <div class="idea-desc">Configure objects inline. Kotlin's 'with' and 'apply' for Swift.</div>
+                        <div class="idea-uses"><strong>Not in 0xLeif repos:</strong> Simple inline configuration helper</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Create swift-with - inline configuration, following CorvidLabs conventions.
+
+Functions:
+- with(_:_:) - Configure and return (reference types)
+- mutating(_:_:) - Configure value types
+
+Example:
+```swift
+let label = with(UILabel()) {
+    $0.text = "Hello"
+    $0.font = .systemFont(ofSize: 16)
+    $0.textColor = .label
+}
+
+let rect = CGRect.zero.mutating {
+    $0.size.width = 100
+    $0.size.height = 50
+}
+```
+
+~20 lines. The simplest useful package.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">swift-id</span>
+                            <span class="tier-badge tier-micro">Micro</span>
+                        </div>
+                        <div class="idea-desc">Type-safe identifiers. Prevent mixing UserID with PostID. Phantom types.</div>
+                        <div class="idea-uses"><strong>Not in 0xLeif repos:</strong> Compile-time ID type safety</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Create swift-id - type-safe identifiers, following CorvidLabs conventions.
+
+Core protocol: TypedID
+- Wraps raw value (UUID, String, Int)
+- Codable as raw value
+- Hashable, Equatable, Sendable
+
+Example:
+```swift
+struct UserID: TypedID { let rawValue: UUID }
+struct PostID: TypedID { let rawValue: UUID }
+
+func fetchUser(id: UserID) -> User
+func fetchPost(id: PostID) -> Post
+
+fetchUser(id: userId) // OK
+fetchUser(id: postId) // Compile error!
+```
+
+~50 lines. Compiler-enforced safety.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">swift-lens</span>
+                            <span class="tier-badge tier-micro">Micro</span>
+                        </div>
+                        <div class="idea-desc">Functional getters/setters for nested data. Immutable updates without boilerplate.</div>
+                        <div class="idea-uses"><strong>Not in 0xLeif repos:</strong> Functional optics pattern</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Create swift-lens - functional optics, following CorvidLabs conventions.
+
+Core: Lens<Whole, Part>
+- Get and set nested values
+- Compose for deep nesting
+- KeyPath-based construction
+- Immutable updates
+
+Example:
+```swift
+struct User { var profile: Profile }
+struct Profile { var name: String }
+
+let nameLens = Lens(\User.profile.name)
+let name = nameLens.get(user)
+let updated = nameLens.set(user, "Jane")
+
+// Composition
+let deep = userLens.compose(profileLens)
+```
+
+~100 lines. Value semantics.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">swift-pool</span>
+                            <span class="tier-badge tier-micro">Micro</span>
+                        </div>
+                        <div class="idea-desc">Resource pooling. Reuse expensive objects (connections, buffers).</div>
+                        <div class="idea-uses"><strong>Not in 0xLeif repos:</strong> Connection/resource pool pattern</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Create swift-pool - resource pooling, following CorvidLabs conventions.
+
+Core: Pool<Resource>
+- Fixed or dynamic size
+- Acquire/release pattern
+- Auto cleanup on idle
+- Health checks
+
+Example:
+```swift
+let pool = Pool(
+    maxSize: 10,
+    create: { try await Database.connect() },
+    destroy: { try await $0.close() }
+)
+
+try await pool.withResource { conn in
+    try await conn.query("SELECT ...")
+} // Auto released
+```
+
+Actor-based. ~120 lines.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Ideas -->
+        <section id="apps">
+            <h2>App Ideas Using Ecosystem</h2>
+            <div class="section">
+                <div class="idea-grid">
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">ArtMint</span>
+                            <span class="tier-badge tier-4">App</span>
+                        </div>
+                        <div class="idea-desc">Generate art with swift-art → mint as NFT on Algorand → store on IPFS via Pinata.</div>
+                        <div class="idea-uses"><strong>Packages:</strong> swift-art, swift-algorand, swift-pinata, swift-arc, swift-mint</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Design ArtMint - generative art NFT minting app.
+
+Features:
+1. Generate art with swift-art (noise, fractals, L-systems)
+2. UI controls for adjusting parameters
+3. Upload to IPFS via swift-pinata
+4. ARC-69 metadata with swift-arc
+5. Mint NFT using swift-mint
+6. Gallery of created NFTs
+
+Tech: SwiftUI, all CorvidLabs packages.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">MusicTheoryApp</span>
+                            <span class="tier-badge tier-4">App</span>
+                        </div>
+                        <div class="idea-desc">Interactive music theory with swift-music. Scales, chords, ear training.</div>
+                        <div class="idea-uses"><strong>Packages:</strong> swift-music, swift-graph (for progressions)</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Design MusicTheoryApp using swift-music.
+
+Features:
+1. Lessons: scales, chords, progressions
+2. Interactive piano/fretboard
+3. Ear training exercises
+4. Progress tracking
+5. MIDI playback
+
+Mono applet or standalone SwiftUI app.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <span class="idea-name">WeatherNFT</span>
+                            <span class="tier-badge tier-4">App</span>
+                        </div>
+                        <div class="idea-desc">Daily weather as generative art NFTs. Each day's conditions create unique artwork.</div>
+                        <div class="idea-uses"><strong>Packages:</strong> swift-weather, swift-art, swift-algorand, swift-pinata</div>
+                        <div class="prompt-container">
+                            <div class="prompt-label">Claude Prompt</div>
+                            <div class="prompt-wrapper">
+                                <div class="prompt-box">Design WeatherNFT - daily weather art NFTs.
+
+Map weather to art:
+- Temperature → color palette
+- Conditions → patterns (rain=lines, snow=dots)
+- Wind → flow field intensity
+- Humidity → texture
+
+Daily scheduled minting. Web gallery.</div>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>CorvidLabs Ecosystem Analysis • January 17, 2026</p>
+            <p><a href="https://github.com/CorvidLabs">github.com/CorvidLabs</a> • <a href="https://github.com/0xLeif">github.com/0xLeif</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function copyPrompt(button) {
+            const promptBox = button.parentElement.querySelector('.prompt-box');
+            navigator.clipboard.writeText(promptBox.textContent).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(() => { button.textContent = 'Copy'; button.classList.remove('copied'); }, 2000);
+            });
+        }
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
