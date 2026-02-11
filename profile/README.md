@@ -7,14 +7,14 @@ We're an indie collective passionate about creating innovative applications, blo
 ## What We're Building
 
 ### AlgoChat
-End-to-end encrypted messaging on Algorand with hybrid ECDH + PSK ratcheting. Multi-language implementations and a web client.
+End-to-end encrypted messaging on Algorand with hybrid ECDH + PSK ratcheting. Multi-language implementations, a web client, and cross-implementation test suite.
 
-→ [`protocol-algochat`](https://github.com/CorvidLabs/protocol-algochat) · [`swift-algochat`](https://github.com/CorvidLabs/swift-algochat) · [`ts-algochat`](https://github.com/CorvidLabs/ts-algochat) · [`kt-algochat`](https://github.com/CorvidLabs/kt-algochat) · [`rs-algochat`](https://github.com/CorvidLabs/rs-algochat) · [`py-algochat`](https://github.com/CorvidLabs/py-algochat) · [`algochat-web`](https://github.com/CorvidLabs/algochat-web)
+→ [`protocol-algochat`](https://github.com/CorvidLabs/protocol-algochat) · [`swift-algochat`](https://github.com/CorvidLabs/swift-algochat) · [`ts-algochat`](https://github.com/CorvidLabs/ts-algochat) · [`kt-algochat`](https://github.com/CorvidLabs/kt-algochat) · [`rs-algochat`](https://github.com/CorvidLabs/rs-algochat) · [`py-algochat`](https://github.com/CorvidLabs/py-algochat) · [`algochat-web`](https://github.com/CorvidLabs/algochat-web) · [`test-algochat`](https://github.com/CorvidLabs/test-algochat) · [`algochat-landing`](https://github.com/CorvidLabs/algochat-landing)
 
 ### AI Agents
-Autonomous AI software engineer powered by on-chain messaging — writes code, opens PRs, and ships features.
+Autonomous AI software engineer powered by on-chain messaging — writes code, opens PRs, and ships features. Active contributor to [MCP](https://github.com/modelcontextprotocol/typescript-sdk) and [A2A](https://github.com/a2aproject/a2a-js) protocol ecosystems.
 
-→ [`corvid-agent`](https://github.com/CorvidLabs/corvid-agent)
+→ [`corvid-agent`](https://github.com/CorvidLabs/corvid-agent) · [`corvid-agent-chat`](https://github.com/corvid-agent/corvid-agent-chat) · [`algochat-cli`](https://github.com/corvid-agent/algochat-cli)
 
 ### Algorand Blockchain
 We're all-in on Algorand. Our Swift SDK is the most complete toolchain for building on Algorand from Apple platforms — from core transactions to NFT minting.
