@@ -9,7 +9,7 @@ We're an indie collective passionate about creating innovative applications, blo
 ### AlgoChat
 End-to-end encrypted messaging on Algorand with hybrid ECDH + PSK ratcheting. Multi-language implementations, a web client, and cross-implementation test suite.
 
-→ [`protocol-algochat`](https://github.com/CorvidLabs/protocol-algochat) · [`swift-algochat`](https://github.com/CorvidLabs/swift-algochat) · [`ts-algochat`](https://github.com/CorvidLabs/ts-algochat) · [`kt-algochat`](https://github.com/CorvidLabs/kt-algochat) · [`rs-algochat`](https://github.com/CorvidLabs/rs-algochat) · [`py-algochat`](https://github.com/CorvidLabs/py-algochat) · [`algochat-web`](https://github.com/CorvidLabs/algochat-web) · [`test-algochat`](https://github.com/CorvidLabs/test-algochat) · [`algochat-landing`](https://github.com/CorvidLabs/algochat-landing)
+→ [`protocol-algochat`](https://github.com/CorvidLabs/protocol-algochat) · [`swift-algochat`](https://github.com/CorvidLabs/swift-algochat) · [`ts-algochat`](https://github.com/CorvidLabs/ts-algochat) · [`kt-algochat`](https://github.com/CorvidLabs/kt-algochat) · [`rs-algochat`](https://github.com/CorvidLabs/rs-algochat) · [`py-algochat`](https://github.com/CorvidLabs/py-algochat) · [`go-algochat`](https://github.com/CorvidLabs/go-algochat) · [`algochat-web`](https://github.com/CorvidLabs/algochat-web) · [`test-algochat`](https://github.com/CorvidLabs/test-algochat) · [`algochat-landing`](https://github.com/CorvidLabs/algochat-landing)
 
 ### AI Agents
 Autonomous AI software engineer powered by on-chain messaging — writes code, opens PRs, and ships features. Active contributor to [MCP](https://github.com/modelcontextprotocol/typescript-sdk) and [A2A](https://github.com/a2aproject/a2a-js) protocol ecosystems.
@@ -25,6 +25,21 @@ We're all-in on Algorand. Our Swift SDK is the most complete toolchain for build
 Focused, well-crafted packages that solve real problems:
 
 → [`swift-retry`](https://github.com/CorvidLabs/swift-retry) · [`swift-qr`](https://github.com/CorvidLabs/swift-qr) · [`swift-env`](https://github.com/CorvidLabs/swift-env) · [`swift-graph`](https://github.com/CorvidLabs/swift-graph) · [`swift-color`](https://github.com/CorvidLabs/swift-color) · [`swift-music`](https://github.com/CorvidLabs/swift-music) · [`swift-godot`](https://github.com/CorvidLabs/swift-godot) · [`swift-weather`](https://github.com/CorvidLabs/swift-weather) · [and more...](https://github.com/orgs/CorvidLabs/repositories)
+
+### Rust
+Exploring systems programming with Rust — servers, games, and UI experiments.
+
+→ [`rust-server`](https://github.com/CorvidLabs/rust-server) · [`rust-game`](https://github.com/CorvidLabs/rust-game) · [`rust-ui`](https://github.com/CorvidLabs/rust-ui) · [`rust-learning`](https://github.com/CorvidLabs/rust-learning)
+
+### Go
+Go services for monitoring and infrastructure.
+
+→ [`go-algod-monitor`](https://github.com/CorvidLabs/go-algod-monitor)
+
+### Web Apps
+Standalone web applications.
+
+→ [`opinion-market`](https://github.com/CorvidLabs/opinion-market)
 
 ### Education
 [`cs`](https://github.com/CorvidLabs/cs) — Interactive CS courses in Python, JavaScript, Swift, Rust, and Algorithms
