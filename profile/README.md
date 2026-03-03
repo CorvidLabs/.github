@@ -26,11 +26,6 @@ Focused, well-crafted packages that solve real problems:
 
 → [`swift-retry`](https://github.com/CorvidLabs/swift-retry) · [`swift-qr`](https://github.com/CorvidLabs/swift-qr) · [`swift-env`](https://github.com/CorvidLabs/swift-env) · [`swift-graph`](https://github.com/CorvidLabs/swift-graph) · [`swift-color`](https://github.com/CorvidLabs/swift-color) · [`swift-music`](https://github.com/CorvidLabs/swift-music) · [`swift-godot`](https://github.com/CorvidLabs/swift-godot) · [`swift-weather`](https://github.com/CorvidLabs/swift-weather) · [and more...](https://github.com/orgs/CorvidLabs/repositories)
 
-### Rust
-Exploring systems programming with Rust — servers, games, and UI experiments.
-
-→ [`rust-server`](https://github.com/CorvidLabs/rust-server) · [`rust-game`](https://github.com/CorvidLabs/rust-game) · [`rust-ui`](https://github.com/CorvidLabs/rust-ui) · [`rust-learning`](https://github.com/CorvidLabs/rust-learning)
-
 ### Go
 Go services for monitoring and infrastructure.
 
