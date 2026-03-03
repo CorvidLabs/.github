@@ -31,11 +31,6 @@ Go services for monitoring and infrastructure.
 
 → [`go-algod-monitor`](https://github.com/CorvidLabs/go-algod-monitor)
 
-### Web Apps
-Standalone web applications.
-
-→ [`opinion-market`](https://github.com/CorvidLabs/opinion-market)
-
 ### Education
 [`cs`](https://github.com/CorvidLabs/cs) — Interactive CS courses in Python, JavaScript, Swift, Rust, and Algorithms
 
