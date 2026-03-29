@@ -19,7 +19,7 @@ Autonomous AI software engineer powered by on-chain messaging — writes code, o
 ### Algorand Blockchain
 We're all-in on Algorand. Our Swift SDK is the most complete toolchain for building on Algorand from Apple platforms — from core transactions to NFT minting.
 
-→ [`swift-algorand`](https://github.com/CorvidLabs/swift-algorand) · [`swift-algokit`](https://github.com/CorvidLabs/swift-algokit) · [`swift-mint`](https://github.com/CorvidLabs/swift-mint) · [`swift-arc`](https://github.com/CorvidLabs/swift-arc) · [`NFTRemix`](https://github.com/CorvidLabs/NFTRemix)
+→ [`swift-algorand`](https://github.com/CorvidLabs/swift-algorand) · [`swift-algokit`](https://github.com/CorvidLabs/swift-algokit) · [`swift-mint`](https://github.com/CorvidLabs/swift-mint) · [`swift-arc`](https://github.com/CorvidLabs/swift-arc)
 
 ### Open Source Libraries
 Focused, well-crafted packages that solve real problems:
