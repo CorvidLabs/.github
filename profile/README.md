@@ -1,52 +1,59 @@
-# Corvid Labs
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="profile/banner-dark.png">
+  <img alt="CorvidLabs — open-source Swift tools" src="profile/banner-light.png" width="100%">
+</picture>
 
-**Building the future of development, together.**
+# Crows build tools. So do we.
 
-We're an indie collective passionate about creating innovative applications, blockchain tools, and open-source frameworks. We believe in building high-quality, user-centric software and fostering a community that drives development forward.
+Corvids are the only birds that make their own tools. We're a lab that builds developer
+tools, open-source, mostly in Swift. Small, sharp things that do one job well: a CLI for
+the whole dev loop, specs that hold in CI, deterministic risk scoring, signed provenance,
+an agent runner we dogfood, encrypted messaging, and a stack of libraries.
 
-## What We're Building
+**It all lives in one place → [corvidlabs.xyz](https://corvidlabs.github.io/corvidlabs-site/)**
 
-### AlgoChat
-End-to-end encrypted messaging on Algorand with hybrid ECDH + PSK ratcheting. Multi-language implementations, a web client, and cross-implementation test suite.
+## Tools
 
-→ [`protocol-algochat`](https://github.com/CorvidLabs/protocol-algochat) · [`swift-algochat`](https://github.com/CorvidLabs/swift-algochat) · [`ts-algochat`](https://github.com/CorvidLabs/ts-algochat) · [`kt-algochat`](https://github.com/CorvidLabs/kt-algochat) · [`rs-algochat`](https://github.com/CorvidLabs/rs-algochat) · [`py-algochat`](https://github.com/CorvidLabs/py-algochat) · [`go-algochat`](https://github.com/CorvidLabs/go-algochat) · [`algochat-web`](https://github.com/CorvidLabs/algochat-web) · [`test-algochat`](https://github.com/CorvidLabs/test-algochat) · [`algochat-landing`](https://github.com/CorvidLabs/algochat-landing)
+The dev loop, end to end.
 
-### AI Agents
-Autonomous AI software engineer powered by on-chain messaging — writes code, opens PRs, and ships features. Active contributor to [MCP](https://github.com/modelcontextprotocol/typescript-sdk) and [A2A](https://github.com/a2aproject/a2a-js) protocol ecosystems.
+- **[fledge](https://corvidlabs.github.io/corvidlabs-site/fledge/)** · one CLI for the whole dev lifecycle: scaffold, run, spec, review, ship.
+- **[spec-sync](https://corvidlabs.github.io/corvidlabs-site/spec-sync/)** · specs as CI-enforced contracts. Bidirectional, twelve languages.
+- **[augur](https://corvidlabs.github.io/corvidlabs-site/augur/)** · deterministic change-risk scoring. proceed / review / block, no LLM.
+- **[attest](https://corvidlabs.github.io/corvidlabs-site/attest/)** · signed provenance in git notes. The trust record for a change.
+- **[merlin](https://corvidlabs.github.io/corvidlabs-site/merlin/)** · the AI agent runner we dogfood. Multi-provider, spec-aware, plugin-shaped.
 
-→ [`corvid-agent`](https://github.com/CorvidLabs/corvid-agent) · [`corvid-agent-chat`](https://github.com/corvid-agent/corvid-agent-chat) · [`algochat-cli`](https://github.com/corvid-agent/algochat-cli)
+A trust gate on every PR is three steps: `spec-sync` (contract holds) → `augur` (risk under threshold) → `attest` (trust recorded).
 
-### Algorand Blockchain
-We're all-in on Algorand. Our Swift SDK is the most complete toolchain for building on Algorand from Apple platforms — from core transactions to NFT minting.
+## Apps
 
-→ [`swift-algorand`](https://github.com/CorvidLabs/swift-algorand) · [`swift-algokit`](https://github.com/CorvidLabs/swift-algokit) · [`swift-mint`](https://github.com/CorvidLabs/swift-mint) · [`swift-arc`](https://github.com/CorvidLabs/swift-arc)
+- **[Quill](https://corvidlabs.github.io/corvidlabs-site/quill/)** · local-first voice dictation. Whisper STT, on-device polish, system-wide paste.
+- **[corvid-chat](https://corvidlabs.github.io/corvidlabs-site/corvid-chat/)** · privacy-first federated chat (AlgoChat E2EE + Merlin bridge).
+- **Podo** · multi-platform weather with personality. iOS, Android, web, shared KMP.
 
-### Open Source Libraries
-Focused, well-crafted packages that solve real problems:
+## AlgoChat
 
-→ [`swift-retry`](https://github.com/CorvidLabs/swift-retry) · [`swift-qr`](https://github.com/CorvidLabs/swift-qr) · [`swift-env`](https://github.com/CorvidLabs/swift-env) · [`swift-graph`](https://github.com/CorvidLabs/swift-graph) · [`swift-color`](https://github.com/CorvidLabs/swift-color) · [`swift-music`](https://github.com/CorvidLabs/swift-music) · [`swift-godot`](https://github.com/CorvidLabs/swift-godot) · [`swift-weather`](https://github.com/CorvidLabs/swift-weather) · [and more...](https://github.com/orgs/CorvidLabs/repositories)
+Cross-language, end-to-end-encrypted messaging on Algorand. One wire format,
+[six implementations](https://corvidlabs.github.io/corvidlabs-site/algochat/), a
+cross-implementation conformance harness, and a browser demo.
 
-### Go
-Go services for monitoring and infrastructure.
+## Libraries
 
-→ [`go-algod-monitor`](https://github.com/CorvidLabs/go-algod-monitor)
+Small Swift packages that do one thing well:
+[swift-retry](https://github.com/CorvidLabs/swift-retry) ·
+[swift-valid](https://github.com/CorvidLabs/swift-valid) ·
+[swift-parse](https://github.com/CorvidLabs/swift-parse) ·
+[swift-env](https://github.com/CorvidLabs/swift-env) ·
+[swift-graph](https://github.com/CorvidLabs/swift-graph) ·
+[swift-color](https://github.com/CorvidLabs/swift-color) ·
+[swift-music](https://github.com/CorvidLabs/swift-music) ·
+[swift-godot](https://github.com/CorvidLabs/swift-godot) ·
+[swift-algorand](https://github.com/CorvidLabs/swift-algorand) ·
+[and more →](https://github.com/orgs/CorvidLabs/repositories)
 
-### Education
-[`cs`](https://github.com/CorvidLabs/cs) — Interactive CS courses in Python, JavaScript, Swift, Rust, and Algorithms
+## Find us
 
-## Our Focus
+[The hub](https://corvidlabs.github.io/corvidlabs-site/) ·
+[Discord](https://discord.gg/mQGPQy5fnd) ·
+[Repositories](https://github.com/orgs/CorvidLabs/repositories)
 
-- **Open Source** — Contributing robust, reusable tools back to the developer community
-- **Community-Driven** — Empowering our users to have a real voice in our roadmap
-- **Blockchain Native** — Building for the decentralized future on Algorand
-- **AI-Native** — Building autonomous developer agents with [corvid-agent](https://github.com/CorvidLabs/corvid-agent)
-
-## Nevermore NFT
-
-Our lifetime membership token provides holders with permanent access to the entire Corvid Labs ecosystem — replacing subscriptions with a single key to all our apps, forever.
-
-[Learn more](https://corvid.algo.xyz)
-
-## Join Us
-
-[Discord](https://discord.gg/mQGPQy5fnd) · [Email](mailto:corvid-labs.envoy197@passmail.net)
+<sub>Read the source. It's short on purpose.</sub>
