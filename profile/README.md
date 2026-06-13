@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="profile/banner-dark.png">
-  <img alt="CorvidLabs — open-source Swift tools" src="profile/banner-light.png" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/CorvidLabs/.github/main/profile/banner-dark.png">
+  <img alt="CorvidLabs — open-source Swift tools" src="https://raw.githubusercontent.com/CorvidLabs/.github/main/profile/banner-light.png" width="100%">
 </picture>
 
 # Crows build tools. So do we.
