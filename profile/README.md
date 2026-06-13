@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/CorvidLabs/.github/main/profile/banner-dark.png">
-  <img alt="CorvidLabs — open-source developer tools" src="https://raw.githubusercontent.com/CorvidLabs/.github/main/profile/banner-light.png" width="100%">
+  <img alt="CorvidLabs: open-source developer tools" src="https://raw.githubusercontent.com/CorvidLabs/.github/main/profile/banner-light.png" width="100%">
 </picture>
 
 # Crows build tools. So do we.
@@ -38,7 +38,7 @@ cross-implementation conformance harness, and a browser demo.
 
 ## Libraries
 
-Small, single-purpose packages — mostly Swift, with some Go:
+Small, single-purpose packages, mostly Swift, with some Go:
 [swift-retry](https://github.com/CorvidLabs/swift-retry) ·
 [swift-valid](https://github.com/CorvidLabs/swift-valid) ·
 [swift-parse](https://github.com/CorvidLabs/swift-parse) ·
