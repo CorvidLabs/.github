@@ -1,0 +1,7 @@
+{
+  "name": "Atlas spec coverage",
+  "description": "Render this repo's spec-coverage badges and cards with atlas and publish them to GitHub Pages on every push.",
+  "iconName": "atlas",
+  "categories": ["Continuous integration", "Utilities", "Rust", "TypeScript"],
+  "filePatterns": [".*\\.spec\\.md$", "\\.atlasignore$"]
+}
