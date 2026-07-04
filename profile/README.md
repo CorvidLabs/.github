@@ -26,14 +26,14 @@ A trust gate on every PR is three steps: `spec-sync` (contract holds) → `augur
 
 ## Spec coverage
 
-Every governed repo maps itself with [atlas](https://corvidlabs.xyz/atlas/) and publishes a live spec-coverage badge on each push. The whole board, refreshed on every build → **[corvidlabs.xyz/atlas/dashboard/](https://corvidlabs.xyz/atlas/dashboard/)**.
+Every governed repo maps itself with [atlas](https://corvidlabs.xyz/atlas/) and publishes a live spec-coverage badge on each push. The whole board, refreshed on every build → **[corvidlabs.xyz/trust/](https://corvidlabs.xyz/trust/)**.
 
-[![fledge spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/fledge/badges/coverage.json&label=fledge)](https://corvidlabs.xyz/atlas/dashboard/)
-[![spec-sync spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/spec-sync/badges/coverage.json&label=spec-sync)](https://corvidlabs.xyz/atlas/dashboard/)
-[![augur spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/augur/badges/coverage.json&label=augur)](https://corvidlabs.xyz/atlas/dashboard/)
-[![attest spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/attest/badges/coverage.json&label=attest)](https://corvidlabs.xyz/atlas/dashboard/)
-[![atlas spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/fledge-plugin-atlas/badges/coverage.json&label=atlas)](https://corvidlabs.xyz/atlas/dashboard/)
-[![quill spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/quill/badges/coverage.json&label=quill)](https://corvidlabs.xyz/atlas/dashboard/)
+[![fledge spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/fledge/badges/coverage.json&label=fledge)](https://corvidlabs.xyz/trust/)
+[![spec-sync spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/spec-sync/badges/coverage.json&label=spec-sync)](https://corvidlabs.xyz/trust/)
+[![augur spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/augur/badges/coverage.json&label=augur)](https://corvidlabs.xyz/trust/)
+[![attest spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/attest/badges/coverage.json&label=attest)](https://corvidlabs.xyz/trust/)
+[![atlas spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/fledge-plugin-atlas/badges/coverage.json&label=atlas)](https://corvidlabs.xyz/trust/)
+[![quill spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/quill/badges/coverage.json&label=quill)](https://corvidlabs.xyz/trust/)
 
 ## Apps
 
