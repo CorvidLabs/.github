@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/CorvidLabs/.github/main/profile/banner-dark.png">
-  <img alt="CorvidLabs — open-source developer tools" src="https://raw.githubusercontent.com/CorvidLabs/.github/main/profile/banner-light.png" width="100%">
+  <img alt="CorvidLabs · open-source developer tools" src="https://raw.githubusercontent.com/CorvidLabs/.github/main/profile/banner-light.png" width="100%">
 </picture>
 
 # Crows build tools. So do we.
@@ -24,6 +24,17 @@ The dev loop, end to end.
 
 A trust gate on every PR is three steps: `spec-sync` (contract holds) → `augur` (risk under threshold) → `attest` (trust recorded).
 
+## Spec coverage
+
+Every governed repo maps itself with [atlas](https://corvidlabs.xyz/atlas/) and publishes a live spec-coverage badge on each push. The whole board, refreshed on every build → **[corvidlabs.xyz/atlas/dashboard/](https://corvidlabs.xyz/atlas/dashboard/)**.
+
+[![fledge spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/fledge/badges/coverage.json&label=fledge)](https://corvidlabs.xyz/atlas/dashboard/)
+[![spec-sync spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/spec-sync/badges/coverage.json&label=spec-sync)](https://corvidlabs.xyz/atlas/dashboard/)
+[![augur spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/augur/badges/coverage.json&label=augur)](https://corvidlabs.xyz/atlas/dashboard/)
+[![attest spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/attest/badges/coverage.json&label=attest)](https://corvidlabs.xyz/atlas/dashboard/)
+[![atlas spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/fledge-plugin-atlas/badges/coverage.json&label=atlas)](https://corvidlabs.xyz/atlas/dashboard/)
+[![quill spec coverage](https://img.shields.io/endpoint?url=https://corvidlabs.github.io/quill/badges/coverage.json&label=quill)](https://corvidlabs.xyz/atlas/dashboard/)
+
 ## Apps
 
 - **[Quill](https://corvidlabs.xyz/quill/)** · local-first voice dictation. Whisper STT, on-device polish, system-wide paste.
@@ -38,7 +49,7 @@ cross-implementation conformance harness, and a browser demo.
 
 ## Libraries
 
-Small, single-purpose packages — mostly Swift, with some Go:
+Small, single-purpose packages, mostly Swift, with some Go:
 [swift-retry](https://github.com/CorvidLabs/swift-retry) ·
 [swift-valid](https://github.com/CorvidLabs/swift-valid) ·
 [swift-parse](https://github.com/CorvidLabs/swift-parse) ·
