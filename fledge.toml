@@ -1,0 +1,6 @@
+[tasks]
+validate-profile = "bun scripts/validate-profile.ts"
+
+[lanes.verify]
+description = "Validate public organization profile metadata"
+steps = ["validate-profile"]
