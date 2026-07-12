@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "CHG-0001-adopt-trust-1-and-specsync-5-organization-governance",
+  "slug": "adopt-trust-1-and-specsync-5-organization-governance",
+  "title": "Adopt Trust 1 and SpecSync 5 organization governance",
+  "description": "Adopt Trust 1 and SpecSync 5 organization governance",
+  "kind": "migration",
+  "state": "implementing",
+  "base_commit": "6f62999090907b50fae00f1b145172672ffd0580",
+  "created_at": 1783830074,
+  "updated_at": 1783830128,
+  "affected_specs": [],
+  "affected_paths": [
+    ".github/",
+    ".specsync/",
+    ".trust.toml",
+    ".augur.toml",
+    ".attest.json",
+    "AGENTS.md",
+    ".claude/",
+    ".cursor/",
+    ".codex/",
+    ".gemini/",
+    "fledge.toml",
+    "scripts/",
+    "trust-rollout.json",
+    "profile/"
+  ],
+  "no_spec_change": true,
+  "no_spec_change_rationale": "Organization governance and rollout metadata do not change a product runtime contract.",
+  "acceptance_criteria": [
+    "The frozen 156-repository ledger validates; Trust 1 runs the native verify lane; SpecSync 5.0.1 strict validation passes; all four agent integrations are installed"
+  ],
+  "selected_artifacts": [
+    "context",
+    "research",
+    "design",
+    "plan",
+    "tasks",
+    "testing",
+    "docs"
+  ],
+  "dependencies": [],
+  "answers": {
+    "architecture_risk": "yes",
+    "public_contract": "no"
+  }
+}

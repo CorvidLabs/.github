@@ -1,0 +1,11 @@
+{
+  "approvals": [
+    {
+      "gate": "definition",
+      "actor": "user:0xLeif",
+      "timestamp": 1783830128,
+      "digest": "d0357bcc34d76947e2c879187ef3a878efe5ba5cb9a6a201abde884e9e9d98d0",
+      "note": "Authorized by the approved organization-wide SpecSync 5 / Trust 1 migration plan."
+    }
+  ]
+}

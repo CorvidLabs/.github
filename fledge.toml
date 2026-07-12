@@ -1,0 +1,6 @@
+[tasks]
+validate-rollout = "bun scripts/validate-trust-rollout.ts"
+
+[lanes.verify]
+description = "Validate organization metadata and the Trust rollout ledger"
+steps = ["validate-rollout"]
