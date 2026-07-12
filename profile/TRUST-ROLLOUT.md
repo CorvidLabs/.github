@@ -28,7 +28,7 @@ This ledger tracks the organization-wide migration to SpecSync 5.0.1 and Trust 1
 
 | Wave | Repository | Visibility | State | PR | Checks | Branch rule |
 | ---: | --- | --- | --- | --- | --- | --- |
-| 1 | .github | public | pending | — | pending | pending |
+| 1 | .github | public | pr_open | [PR](https://github.com/CorvidLabs/.github/pull/12) | pending | pending |
 | 1 | attest | public | pending | — | pending | pending |
 | 1 | augur | public | pending | — | pending | pending |
 | 1 | fledge | public | pr_open | [PR](https://github.com/CorvidLabs/fledge/pull/497) | pending | pending |
