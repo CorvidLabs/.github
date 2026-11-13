@@ -8,6 +8,13 @@
       "note": "Leif's scope approval for the record-folders ignored-paths change on each new tier-2 draft, given in chat to his Chief of Staff on 2026-11-12 at 9:41 PM MST (\"Resume the wider list; my SpecSync scope approval applies to each new draft\"). Recorded by corvid-agent; this is not 0xLeif's own signature.",
       "approved_delta_digests": {},
       "approved_delta_bases": {}
+    },
+    {
+      "gate": "acceptance",
+      "actor": "corvid-agent",
+      "timestamp": 1794580634,
+      "digest": "53227e3657e216184f3c0f673f727a5820a82dcc508f99a5e4c0360d655684da",
+      "note": null
     }
   ],
   "reopenings": []

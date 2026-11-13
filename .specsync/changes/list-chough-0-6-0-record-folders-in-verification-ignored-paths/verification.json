@@ -1,8 +1,24 @@
 {
-  "timestamp": 1794580605,
-  "commit": "45a9f74d95d5de49eeb33d2137edc807aca64cde",
+  "timestamp": 1794580633,
+  "commit": "0dd7a6e2bbce43f7d4c746e9a32abcaa1e93bf48",
   "contract_digest": "89bf6ce4b3015314b3e0cb552a59091b7c1ef916e3f2b7a9421e103002c61bc8",
   "workspace_digest": "d60546f846b2b76379a5116011703c1826827ca0893a2fc4f7b086e966c4650d",
+  "acceptance_input_digest": "1a6b2c5b0723d7a5bb02e13828e6e7bcd93aeec1682da0e38151389e807303a6",
+  "acceptance_manifest": {
+    "schema_version": 1,
+    "entries": [
+      {
+        "path": ".specsync/sdd.json",
+        "kind": "file",
+        "mode": 33188,
+        "payload_digest": "3134d71afed38c0b1df91b2b01f9b4a8e3d0a8ef3aab458cfe8c73dd86937094",
+        "entry_digest": "4683a3cc4e54e118ebc033ceceed7850a6756dbc65b9e3ed3c441de9b9f2a298",
+        "owners": [
+          "@exact:delivery"
+        ]
+      }
+    ]
+  },
   "passed": true,
   "commands": [
     {
